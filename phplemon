@@ -1,5 +1,6 @@
 #!/bin/sh
 
+oldpwd=`pwd`
 cd "`dirname $0`"
 script=`basename $0`
 if test -L "$script"; then
@@ -8,4 +9,6 @@ if test -L "$script"; then
 fi
 INCDIR=`pwd`
 
+# Restore previous PWD.
+cd "$oldpwd"
 exec php -C -q -d include_path="$INCDIR" -d open_basedir="" -d safe_mode=0 -d register_argc_argv="On" -d auto_prepend_file="" -d auto_append_file="" "$INCDIR/PHP/ParserGenerator/cli.php" "$@"

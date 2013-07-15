@@ -6,7 +6,4 @@ else
   INCDIR=`dirname "$0"`
 fi
 
-cd "$INCDIR"
-INCDIR=`pwd`
-
-exec php -C -q -d include_path="$INCDIR" -d open_basedir="" -d safe_mode=0 -d register_argc_argv="On" -d auto_prepend_file="" -d auto_append_file="" "$INCDIR/PHP/ParserGenerator/cli.php" "$@"
+exec php -C -q -d include_path="$INCDIR" -d open_basedir="" -d safe_mode=0 -d register_argc_argv="On" -d auto_prepend_file="" -d auto_append_file="" $INCDIR/PHP/ParserGenerator/cli.php "$@"

@@ -983,8 +983,8 @@ class PHP_ParserGenerator_Data
             return $fp;
         }
         if (!isset($tpltname)) {
-            echo "Can't find the parser driver template file \"%s\".\n",
-                $templatename;
+            printf("Can't find the parser driver template file \"%s\".\n",
+                   $templatename);
             $this->errorcnt++;
             return 0;
         }

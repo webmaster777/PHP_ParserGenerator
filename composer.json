@@ -1,0 +1,29 @@
+{
+    "name": "pear/php_parsergenerator",
+    "description": "Translate grammar files in Lemon Parser Generator format into a PHP 5 parser",
+    "keywords": ["parser", "lemon", "lempar"],
+    "homepage": "https://github.com/pear/PHP_ParserGenerator",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Greg Beaver",
+            "email": "cellog@php.net",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "email": "cellog@php.net",
+        "source": "https://github.com/pear/PHP_ParserGenerator"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHP_ParserGenerator": ""
+        }
+    },
+    "bin": ["phplemon"],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}

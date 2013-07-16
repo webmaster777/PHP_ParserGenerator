@@ -66,15 +66,6 @@
 /**#@+
  * Basic components of the parser generator
  */
-require_once 'PHP/ParserGenerator/Action.php';
-require_once 'PHP/ParserGenerator/ActionTable.php';
-require_once 'PHP/ParserGenerator/Config.php';
-require_once 'PHP/ParserGenerator/Data.php';
-require_once 'PHP/ParserGenerator/Symbol.php';
-require_once 'PHP/ParserGenerator/Rule.php';
-require_once 'PHP/ParserGenerator/Parser.php';
-require_once 'PHP/ParserGenerator/PropagationLink.php';
-require_once 'PHP/ParserGenerator/State.php';
 /**#@-*/
 /**
  * The basic home class for the parser generator

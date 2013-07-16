@@ -1,14 +1,7 @@
-#!/bin/sh
+#!/usr/bin/env php
+<?php
 
-oldpwd=`pwd`
-cd "`dirname $0`"
-script=`basename $0`
-if test -L "$script"; then
-  INCDIR=`dirname $(readlink "$script")`
-  cd "$INCDIR"
-fi
-INCDIR=`pwd`
-
-# Restore previous PWD.
-cd "$oldpwd"
-exec php -C -q -d include_path="$INCDIR" -d open_basedir="" -d safe_mode=0 -d register_argc_argv="On" -d auto_prepend_file="" -d auto_append_file="" "$INCDIR/PHP/ParserGenerator/cli.php" "$@"
+require __DIR__ .
+    DIRECTORY_SEPARATOR . "PHP" .
+    DIRECTORY_SEPARATOR . "ParserGenerator" .
+    DIRECTORY_SEPARATOR . "cli.php";

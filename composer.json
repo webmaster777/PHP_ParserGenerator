@@ -1,8 +1,9 @@
 {
-    "name": "pear/php_parsergenerator",
+    "name": "fpoirotte/php_parsergenerator",
     "description": "Translate grammar files in Lemon Parser Generator format into a PHP 5 parser",
+    "type": "library",
     "keywords": ["parser", "lemon", "lempar"],
-    "homepage": "https://github.com/pear/PHP_ParserGenerator",
+    "homepage": "https://github.com/fpoirotte/PHP_ParserGenerator",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -12,8 +13,15 @@
         }
     ],
     "support": {
-        "email": "cellog@php.net",
-        "source": "https://github.com/pear/PHP_ParserGenerator"
+        "issues": "https://github.com/fpoirotte/PHP_ParserGenerator/issues",
+        "source": "https://github.com/fpoirotte/PHP_ParserGenerator"
+    },
+    "require": {
+        "php": ">=5.1.0"
+    },
+    "provide": {
+        "pear/php_parsergenerator": "0.1.7",
+        "pear/php_parsergenerator": "0.1.7-patch1"
     },
     "autoload": {
         "psr-0": {

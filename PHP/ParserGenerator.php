@@ -138,7 +138,7 @@ class PHP_ParserGenerator
         ),
         'T' => array(
             'type'    => self::OPT_STR,
-            'arg'     => 'parser_template',
+            'arg'     => '_parser_template',
             'message' => 'Use different parser template file.'
         )
     );
@@ -176,6 +176,8 @@ class PHP_ParserGenerator
             $this->{self::$_options[$argv[$i][1]]['arg']}($v);
         } elseif (self::$_options[$argv[$i][1]]['type'] == self::OPT_FSTR) {
             $this->{self::$_options[$argv[$i][1]]['arg']}(substr($v, 2));
+        } elseif (self::$_options[$argv[$i][1]]['type'] == self::OPT_STR) {
+            $this->{self::$_options[$argv[$i][1]]['arg']} = substr($argv[$i], 3);
         } else {
             throw new Exception('Command line syntax error:'.
                 ' missing argument on switch: "' . $argv[$i] . '"');

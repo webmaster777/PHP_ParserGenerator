@@ -2,6 +2,9 @@
 /* Driver template for the PHP_ParserGenerator parser generator. (PHP port of LEMON)
 */
 
+// code external to the class is included here
+%%
+
 /**
  * This can be used to store both the string representation of
  * a token, and any useful meta-data associated with the token.
@@ -92,9 +95,6 @@ class ParseyyStackEntry
     public $minor; /* The user-supplied minor token value.  This
                      ** is the value of the token  */
 };
-
-// code external to the class is included here
-%%
 
 // declare_class is output here
 %%

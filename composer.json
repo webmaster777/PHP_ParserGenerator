@@ -20,8 +20,7 @@
         "php": ">=5.1.0"
     },
     "provide": {
-        "pear/php_parsergenerator": "0.1.7",
-        "pear/php_parsergenerator": "0.1.7-patch1"
+        "pear/php_parsergenerator": "0.1.7"
     },
     "autoload": {
         "psr-0": {

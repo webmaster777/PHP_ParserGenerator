@@ -1123,7 +1123,14 @@ class PHP_ParserGenerator_Data
         $this->outname = $this->filenosuffix . ".php";
         $lineno = 1;
         $this->tplt_xfer($this->name, $in, $out, $lineno);
-        
+
+        /* If we're running on PHP >= 5.3.x, the parser may be part of a namespace.
+           In that case, we need to import ArrayAccess properly before we use it. */
+        if (version_compare(PHP_VERSION, '5.3dev', '>=')) {
+             /* We make sure not to change the actual line numbers. */
+             $this->include_code .= "use ArrayAccess; ";
+        }
+
         /* Generate the include code, if any */
         $this->tplt_print($out, $this->include_code, $this->includeln, $lineno);
         $this->tplt_xfer($this->name, $in, $out, $lineno);

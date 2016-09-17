@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-if (file_exists('vendor')) {
+if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'vendor')) {
     include __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . "autoload.php";
 } else {
     include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . "autoload.php";

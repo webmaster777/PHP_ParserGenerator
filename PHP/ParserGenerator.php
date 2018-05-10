@@ -98,12 +98,12 @@ class PHP_ParserGenerator
     private static $_options = array(
         'b' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'basisflag',
+            'arg' => '_basisflag',
             'message' => 'Print only the basis in report.'
         ),
         'c' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'compress',
+            'arg' => '_compress',
             'message' => 'Don\'t compress the action table.'
         ),
         'D' => array(
@@ -113,27 +113,27 @@ class PHP_ParserGenerator
         ),
         'g' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'rpflag',
+            'arg' => '_rpflag',
             'message' => 'Print grammar without actions.'
         ),
         'm' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'mhflag',
+            'arg' => '_mhflag',
             'message' => 'Output a makeheaders compatible file'
         ),
         'q' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'quiet',
+            'arg' => '_quiet',
             'message' => '(Quiet) Don\'t print the report file.'
         ),
         's' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'statistics',
+            'arg' => '_statistics',
             'message' => 'Print parser stats to standard output.'
         ),
         'x' => array(
             'type' => self::OPT_FLAG,
-            'arg' => 'version',
+            'arg' => '_version',
             'message' => 'Print the version number.'
         ),
         'T' => array(

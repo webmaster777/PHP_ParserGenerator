@@ -108,7 +108,7 @@ class PHP_ParserGenerator
         ),
         'D' => array(
             'type' => self::OPT_FSTR,
-            'arg' => 'handleDOption',
+            'arg' => '_handleDOption',
             'message' => 'Define an %ifdef macro.'
         ),
         'g' => array(

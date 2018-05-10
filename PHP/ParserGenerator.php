@@ -140,7 +140,12 @@ class PHP_ParserGenerator
             'type'    => self::OPT_STR,
             'arg'     => '_parser_template',
             'message' => 'Use different parser template file.'
-        )
+        ),
+        'o' => array(
+            'type'    => self::OPT_STR,
+            'arg'     => '_output_filename',
+            'message' => 'Write output to specified filename.'
+        ),
     );
 
     private $_basisflag = 0;
@@ -152,6 +157,7 @@ class PHP_ParserGenerator
     private $_version = 0;
     private $_size;
     private $_parser_template = "";
+    private $_output_filename = "";
 
     /**
      * Process a flag command line argument.
@@ -439,6 +445,7 @@ class PHP_ParserGenerator
         $this->azDefine[] = $z;
     }
 
+
     /**************** From the file "main.c" ************************************/
     /*
     ** Main program file for the LEMON parser generator.
@@ -470,17 +477,20 @@ class PHP_ParserGenerator
         /* Initialize the machine */
         $lem->argv0 = $_SERVER['argv'][0];
         $lem->filename = $this->_optArg(0, $_SERVER['argv']);
-        $a = pathinfo($lem->filename);
+
+        $outfile = ($this->_output_filename !== "") ? $this->_output_filename : $lem->filename;
+        $a = pathinfo($outfile);
         if (isset($a['extension'])) {
             $ext = '.' . $a['extension'];
-            $lem->filenosuffix = substr(
-                $lem->filename,
+            $lem->filenosuffix = (string) substr(
+                $outfile,
                 0,
-                strlen($lem->filename) - strlen($ext)
+                strlen($outfile) - strlen($ext)
             );
         } else {
-            $lem->filenosuffix = $lem->filename;
+            $lem->filenosuffix = $outfile;
         }
+
         $lem->basisflag = $this->_basisflag;
         $lem->has_fallback = 0;
         $lem->nconflict = 0;

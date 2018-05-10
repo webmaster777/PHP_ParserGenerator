@@ -10,6 +10,11 @@
             "name": "Greg Beaver",
             "email": "cellog@php.net",
             "role": "lead"
+        },
+        {
+            "name": "François Poirotte",
+            "email": "clicky@erebot.net",
+            "role": "lead"
         }
     ],
     "support": {
@@ -30,7 +35,7 @@
     "bin": ["phplemon"],
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     }
 }

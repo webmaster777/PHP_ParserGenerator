@@ -1,13 +1,16 @@
 #!/usr/bin/env php
 <?php
 
-if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . 'vendor')) {
-    include __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . "autoload.php";
-} else {
-    include dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . "autoload.php";
+function php_parsergenerator_autoload($cls)
+{
+    $cls = ltrim($cls, '\\');
+    if (!strncmp($cls, "PHP_ParserGenerator", 19)) {
+        require __DIR__ . DIRECTORY_SEPARATOR .
+                str_replace('_', DIRECTORY_SEPARATOR, $cls) . '.php';
+    }
+    return false;
 }
+spl_autoload_register('php_parsergenerator_autoload', true, true);
 
-require __DIR__ .
-    DIRECTORY_SEPARATOR . "PHP" .
-    DIRECTORY_SEPARATOR . "ParserGenerator" .
-    DIRECTORY_SEPARATOR . "cli.php";
+$pg = new PHP_ParserGenerator;
+$pg->main();

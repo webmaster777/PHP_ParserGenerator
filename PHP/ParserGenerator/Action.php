@@ -184,7 +184,7 @@ class PHP_ParserGenerator_Action
      * @param PHP_ParserGenerator_Symbol                         $sp
      * @param PHP_ParserGenerator_State|PHP_ParserGenerator_Rule $arg
      */
-    static function Action_add(&$app, $type, PHP_ParserGenerator_Symbol $sp, $arg)
+    static function Action_add(&$app, $type, PHP_ParserGenerator_Symbol $sp, $arg, $quiet)
     {
         $new = new PHP_ParserGenerator_Action;
         $new->next = $app;
@@ -192,8 +192,10 @@ class PHP_ParserGenerator_Action
         $new->type = $type;
         $new->sp = $sp;
         $new->x = $arg;
-        echo ' Adding ';
-        $new->display();
+        if (!$quiet) {
+            echo ' Adding ';
+            $new->display();
+        }
     }
 
     /**

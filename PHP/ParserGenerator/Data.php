@@ -275,6 +275,11 @@ class PHP_ParserGenerator_Data
      */
     public $filenosuffix;
     /**
+     * Whether to output details about what's being done
+     * @var bool
+     */
+    public $quiet;
+    /**
      * Name of the current output file
      * @var string
      */
@@ -593,10 +598,10 @@ class PHP_ParserGenerator_Data
             if ($sp->type == PHP_ParserGenerator_Symbol::MULTITERMINAL) {
                 for($i = 0; $i < $sp->nsubsym; $i++) {
                     PHP_ParserGenerator_Action::Action_add($stp->ap, PHP_ParserGenerator_Action::SHIFT, $sp->subsym[$i],
-                                            $newstp);
+                                            $newstp, $this->quiet);
                 }
             } else {
-                PHP_ParserGenerator_Action::Action_add($stp->ap, PHP_ParserGenerator_Action::SHIFT, $sp, $newstp);
+                PHP_ParserGenerator_Action::Action_add($stp->ap, PHP_ParserGenerator_Action::SHIFT, $sp, $newstp, $this->quiet);
             }
         }
     }
@@ -645,7 +650,7 @@ class PHP_ParserGenerator_Data
                             /* Add a reduce action to the state "stp" which will reduce by the
                             ** rule "cfp->rp" if the lookahead symbol is "$this->symbols[j]" */
                             PHP_ParserGenerator_Action::Action_add($stp->ap, PHP_ParserGenerator_Action::REDUCE,
-                                                    $this->symbols[$j], $cfp->rp);
+                                                    $this->symbols[$j], $cfp->rp, $this->quiet);
                         }
                     }
                 }
@@ -664,7 +669,8 @@ class PHP_ParserGenerator_Data
         /* Add to the first state (which is always the starting state of the
         ** finite state machine) an action to ACCEPT if the lookahead is the
         ** start nonterminal.  */
-        PHP_ParserGenerator_Action::Action_add($this->sorted[0]->data->ap, PHP_ParserGenerator_Action::ACCEPT, $sp, 0);
+        PHP_ParserGenerator_Action::Action_add($this->sorted[0]->data->ap, PHP_ParserGenerator_Action::ACCEPT, $sp, 0,
+                                $this->quiet);
     
         /* Resolve conflicts */
         for ($i = 0; $i < $this->nstate; $i++) {
@@ -674,10 +680,12 @@ class PHP_ParserGenerator_Data
             if (!$stp->ap) {
                 throw new Exception('state has no actions associated');
             }
-            echo 'processing state ' . $stp->statenum . " actions:\n";
-            for ($ap = $stp->ap; $ap !== 0 && $ap->next !== 0; $ap = $ap->next) {
-                echo '  Action ';
-                $ap->display(true);
+            if (!$this->quiet) {
+                echo 'processing state ' . $stp->statenum . " actions:\n";
+                for ($ap = $stp->ap; $ap !== 0 && $ap->next !== 0; $ap = $ap->next) {
+                    echo '  Action ';
+                    $ap->display(true);
+                }
             }
             $stp->ap = PHP_ParserGenerator_Action::Action_sort($stp->ap);
             for ($ap = $stp->ap; $ap !== 0 && $ap->next !== 0; $ap = $ap->next) {

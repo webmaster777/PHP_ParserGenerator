@@ -472,6 +472,7 @@ class PHP_ParserGenerator
             exit(1);
         }
         $lem->errorcnt = 0;
+        $lem->quiet = $this->_quiet;
         $lem->parser_template = $this->_parser_template;
 
         /* Initialize the machine */

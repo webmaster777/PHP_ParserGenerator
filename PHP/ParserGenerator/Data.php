@@ -1134,7 +1134,7 @@ class PHP_ParserGenerator_Data
 
         /* If we're running on PHP >= 5.3.x, the parser may be part of a namespace.
            In that case, we need to import ArrayAccess properly before we use it. */
-        if (version_compare(PHP_VERSION, '5.3dev', '>=')) {
+        if (version_compare(PHP_VERSION, '5.3dev', '>=') && $this->include_code && strpos($this->include_code, 'namespace') !== false) {
              /* We make sure not to change the actual line numbers. */
              $this->include_code .= "use ArrayAccess; ";
         }

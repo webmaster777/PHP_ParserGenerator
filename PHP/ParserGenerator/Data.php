@@ -1132,13 +1132,6 @@ class PHP_ParserGenerator_Data
         $lineno = 1;
         $this->tplt_xfer($this->name, $in, $out, $lineno);
 
-        /* If we're running on PHP >= 5.3.x, the parser may be part of a namespace.
-           In that case, we need to import ArrayAccess properly before we use it. */
-        if (version_compare(PHP_VERSION, '5.3dev', '>=') && $this->include_code && strpos($this->include_code, 'namespace') !== false) {
-             /* We make sure not to change the actual line numbers. */
-             $this->include_code .= "use ArrayAccess; ";
-        }
-
         /* Generate the include code, if any */
         $this->tplt_print($out, $this->include_code, $this->includeln, $lineno);
         $this->tplt_xfer($this->name, $in, $out, $lineno);
@@ -1732,7 +1725,8 @@ class PHP_ParserGenerator_Data
         $used = array();   /* True for each RHS element which is used */
         
         $this->append_str('', 0);
-        for ($i = 0; $i < strlen($rp->code); $i++) {
+        $codelen = strlen($rp->code);
+        for ($i = 0; $i < $codelen; $i++) {
             $cp = $rp->code[$i];
             if (preg_match('/[A-Za-z]/', $cp) &&
                  ($i === 0 || (!preg_match('/[A-Za-z0-9_]/', $rp->code[$i - 1])))) {
@@ -1751,7 +1745,7 @@ class PHP_ParserGenerator_Data
                 } else {
                     for ($ii = 0; $ii < $rp->nrhs; $ii++) {
                         if ($rp->rhsalias[$ii] && $tempcp == $rp->rhsalias[$ii]) {
-                            if ($rp->code[0] == '@') {
+                            if ($i > 0 && $rp->code[$i-1] == '@') {
                                 /* If the argument is of the form @X then substitute
                                 ** the token number of X, not the value of X */
                                 $this->append_str("\$this->yystack[\$this->yyidx + " .

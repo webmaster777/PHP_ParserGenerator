@@ -11,7 +11,7 @@
  *
  * meta-data should be stored as an array
  */
-class ParseyyToken implements ArrayAccess
+class ParseyyToken implements \ArrayAccess
 {
     public $string = '';
     public $metadata = array();

@@ -1053,7 +1053,7 @@ class PHP_ParserGenerator_Data
      */
     private function tplt_print($out, $str, $strln, &$lineno)
     {
-        if ($str == '') {
+        if ($str == '' || $str == 0) {
             return;
         }
         $this->tplt_linedir($out, $strln, $this->filename);

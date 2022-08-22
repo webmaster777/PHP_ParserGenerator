@@ -13,7 +13,7 @@
  */
 class ParseyyToken implements \ArrayAccess
 {
-    public $string = '';
+    public string $string = '';
     public $metadata = array();
 
     function __construct($s, $m = array())
@@ -36,18 +36,17 @@ class ParseyyToken implements \ArrayAccess
         return $this->string;
     }
 
-    function offsetExists($offset): bool
+    function offsetExists(mixed $offset): bool
     {
         return isset($this->metadata[$offset]);
     }
 
-    #[\ReturnTypeWillChange]
-    function offsetGet($offset)
+    function offsetGet(mixed $offset): mixed
     {
         return $this->metadata[$offset];
     }
 
-    function offsetSet($offset, $value): void
+    function offsetSet(mixed $offset, mixed $value): void
     {
         if ($offset === null) {
             if (isset($value[0])) {
@@ -70,7 +69,7 @@ class ParseyyToken implements \ArrayAccess
         }
     }
 
-    function offsetUnset($offset): void
+    function offsetUnset(mixed $offset): void
     {
         unset($this->metadata[$offset]);
     }

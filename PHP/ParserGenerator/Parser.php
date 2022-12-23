@@ -412,6 +412,9 @@ class PHP_ParserGenerator_Parser
         $gp->errorcnt = $this->errorcnt;
     }
 
+    /** @var int for referencing in WAITING_FOR_DECL_KEYWORD */
+    private $a = 0;
+
     /**
      * Parse a single token
      * @param string token
@@ -419,7 +422,7 @@ class PHP_ParserGenerator_Parser
     function parseonetoken($token)
     {
         $x = $token;
-        $this->a = 0; // for referencing in WAITING_FOR_DECL_KEYWORD
+        $this->a = 0;
         if (PHP_ParserGenerator::DEBUG) {
             printf("%s:%d: Token=[%s] state=%d\n",
                 $this->filename, $this->tokenlineno, $token, $this->state);

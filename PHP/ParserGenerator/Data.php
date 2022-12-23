@@ -320,6 +320,8 @@ class PHP_ParserGenerator_Data
      */
     public $parser_template = "";
 
+    public $arg = 0;
+
     /* Find a precedence symbol of every rule in the grammar.
      * 
      * Those rules which have a precedence symbol coded in the input

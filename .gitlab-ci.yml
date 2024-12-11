@@ -1,0 +1,7 @@
+publish:
+  stage: deploy
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/curlimages/curl:latest
+  only:
+    - tags
+  script:
+    - 'curl --data "tag=${CI_COMMIT_TAG}" --header "Authorization: Bearer ${CI_JOB_TOKEN}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/composer"'
